@@ -2,7 +2,7 @@ package data
 
 // Стартовое сообщение
 var StartMessage = `
-HI!, BROOOOOOOO
+Приветик)
 
 `
 
