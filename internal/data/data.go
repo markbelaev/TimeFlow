@@ -1,6 +1,9 @@
 package data
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 // Стартовое сообщение
 var StartMessage = `
@@ -16,7 +19,7 @@ var AboutMessage = `
 
 // Тэг
 func TAG() {
-	fmt.Println(`
+	fmt.Fprint(os.Stderr, `
                                               
                                                     ***   ***                                       
     *       *                                     ** ***   ***                                      
