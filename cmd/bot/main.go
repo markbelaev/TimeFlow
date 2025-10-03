@@ -5,6 +5,7 @@ import (
 	"os"
 	"time"
 	"timeflow/internal/config"
+	"timeflow/internal/data"
 	"timeflow/internal/handlers"
 
 	"gopkg.in/telebot.v4"
@@ -38,5 +39,6 @@ func main() {
 
 	// Запуск бота
 	slog.Info("Starting bot..")
+	data.Show()
 	bot.Start()
 }
