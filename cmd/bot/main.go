@@ -39,6 +39,6 @@ func main() {
 
 	// Запуск бота
 	slog.Info("Starting bot..")
-	data.Show()
+	data.TAG()
 	bot.Start()
 }

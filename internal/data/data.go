@@ -15,7 +15,7 @@ var AboutMessage = `
 `
 
 // Тэг
-func Show() {
+func TAG() {
 	fmt.Println(`
                                               
                                                     ***   ***                                       
