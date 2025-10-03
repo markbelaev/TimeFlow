@@ -14,7 +14,7 @@ import (
 func main() {
 
 	// Инициализация логгера
-	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stdout, nil)))
+	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, nil)))
 
 	// Загрузка конфига
 	cfg := config.Load()
