@@ -17,7 +17,17 @@ func main() {
 	data.TAG()
 
 	// Инициализация логгера
-	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, nil)))
+	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
+		ReplaceAttr: func(groups []string, a slog.Attr) slog.Attr {
+			if a.Key == slog.TimeKey {
+				t := a.Value.Any().(time.Time)
+
+				return slog.String("time", t.Format("15:04:05"))
+			}
+
+			return a
+		},
+	})))
 
 	// Загрузка конфига
 	cfg := config.Load()
