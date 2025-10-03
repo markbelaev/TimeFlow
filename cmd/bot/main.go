@@ -13,6 +13,9 @@ import (
 
 func main() {
 
+	// ТЭГ в консоли с именем бота
+	data.TAG()
+
 	// Инициализация логгера
 	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, nil)))
 
@@ -39,6 +42,5 @@ func main() {
 
 	// Запуск бота
 	slog.Info("Starting bot...")
-	data.TAG()
 	bot.Start()
 }
