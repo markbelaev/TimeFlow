@@ -13,6 +13,7 @@ func HandleStart(c telebot.Context) error {
 	return c.Send(data.StartMessage)
 }
 
+// Обработчик комманды /about
 func HandleAbout(c telebot.Context) error {
 	slog.Info("successful command processing /about")
 	return c.Send(data.AboutMessage)
