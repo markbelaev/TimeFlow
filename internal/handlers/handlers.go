@@ -14,4 +14,5 @@ func RegisterAll(b *telebot.Bot) {
 // Функция регистрации всех комманд
 func registerCommands(b *telebot.Bot) {
 	b.Handle("/start", commands.HandleStart)
+	b.Handle("/about", commands.HandleAbout)
 }
