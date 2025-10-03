@@ -38,7 +38,7 @@ func main() {
 	handlers.RegisterAll(bot)
 
 	// Запуск бота
-	slog.Info("Starting bot..")
+	slog.Info("Starting bot...")
 	data.TAG()
 	bot.Start()
 }
