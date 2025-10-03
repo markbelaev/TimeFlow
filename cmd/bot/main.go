@@ -5,6 +5,7 @@ import (
 	"os"
 	"time"
 	"timeflow/internal/config"
+	"timeflow/internal/handlers"
 
 	"gopkg.in/telebot.v4"
 )
@@ -31,6 +32,9 @@ func main() {
 		slog.Error("Error creating bot", "error", err)
 		os.Exit(1)
 	}
+
+	// Регистрация всех обработчиков
+	handlers.RegisterAll(bot)
 
 	// Запуск бота
 	slog.Info("Starting bot..")
