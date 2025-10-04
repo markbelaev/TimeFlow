@@ -1,7 +1,7 @@
 package models
 
 // Структура с информацией о пользователе
-type TgUser struct {
+type UserInfo struct {
 	ID        int
 	FirstName string
 	LastName  string
