@@ -13,7 +13,7 @@ func GetUserInfo(user *telebot.User) TgUser {
 	return TgUser{
 		ID:        int(user.ID),
 		FirstName: user.FirstName,
-		LastName:  user.FirstName,
+		LastName:  user.LastName,
 		Username:  user.Username,
 	}
 }

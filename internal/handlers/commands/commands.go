@@ -2,23 +2,35 @@ package commands
 
 import (
 	"log/slog"
-	"timeflow/internal/data"
+	"strconv"
+	"timeflow/internal/models"
 
 	"gopkg.in/telebot.v4"
 )
 
 // Функция обработки команды /start
 func HandleStart(c telebot.Context) error {
-	user := c.Sender()
-	slog.Info("Обработка /start", "userID", user.ID)
 
-	return c.Send(data.StartMessage)
+	// Получение информации об пользователе
+	user := models.GetUserInfo(c.Sender())
+
+	// Логирование комманды
+	slog.Info("Обработка /start", "fist_name", user.FirstName, "last_name", user.LastName)
+
+	// Текст для пользователя
+	msg := "Приветик! " + user.FirstName
+
+	// Возвращаем ответ
+	return c.Send(msg)
 }
 
 // Обработчик команды /about
 func HandleAbout(c telebot.Context) error {
-	user := c.Sender()
-	slog.Info("Обработка /about", "userID", user.ID)
+	user := models.GetUserInfo(c.Sender())
 
-	return c.Send(data.AboutMessage)
+	slog.Info("Обработка /about", "fist_name", user.FirstName, "last_name", user.LastName)
+
+	msg := "Я разработчик, а твой ID: " + strconv.Itoa(user.ID)
+
+	return c.Send(msg)
 }

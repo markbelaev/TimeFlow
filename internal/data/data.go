@@ -5,18 +5,6 @@ import (
 	"os"
 )
 
-// Обьявление переменных с текстом для обработчиков
-var (
-	// Стартовое сообщение
-	StartMessage string = `
-    Приветик)
-`
-	// Информация обо мне
-	AboutMessage string = `
-    Я разработчик
-`
-)
-
 // Тэг
 func Tag() {
 	fmt.Fprint(os.Stderr, `
