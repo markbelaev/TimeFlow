@@ -2,19 +2,17 @@ package main
 
 import (
 	"log/slog"
+	"net/http"
 	"os"
 	"time"
 	"timeflow/internal/config"
-	"timeflow/internal/data"
 	"timeflow/internal/handlers"
 
+	"github.com/gin-gonic/gin"
 	"gopkg.in/telebot.v4"
 )
 
 func main() {
-
-	// ТЭГ в консоли с именем бота
-	data.Tag()
 
 	// Инициализация логера
 	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
@@ -28,6 +26,19 @@ func main() {
 			return a
 		},
 	})))
+
+	router := gin.Default()
+
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"status": "ok",
+		})
+	})
+
+	go func() {
+		slog.Info("Starting API...")
+		router.Run(":8080")
+	}()
 
 	// Загрузка конфига
 	cfg := config.Load()
