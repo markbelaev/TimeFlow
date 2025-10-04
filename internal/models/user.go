@@ -2,6 +2,7 @@ package models
 
 import "gopkg.in/telebot.v4"
 
+// Структура с информацией о пользователе
 type TgUser struct {
 	ID        int
 	FirstName string
@@ -9,6 +10,7 @@ type TgUser struct {
 	Username  string
 }
 
+// Функция получения информации о пользователе
 func GetUserInfo(user *telebot.User) TgUser {
 	return TgUser{
 		ID:        int(user.ID),

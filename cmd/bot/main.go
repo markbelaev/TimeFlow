@@ -16,7 +16,7 @@ func main() {
 	// ТЭГ в консоли с именем бота
 	data.Tag()
 
-	// Инициализация логгера
+	// Инициализация логера
 	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 		ReplaceAttr: func(groups []string, a slog.Attr) slog.Attr {
 			if a.Key == slog.TimeKey {
