@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 	"timeflow/internal/config"
+	"timeflow/internal/data"
 	"timeflow/internal/handlers"
 
 	"github.com/gin-gonic/gin"
@@ -13,6 +14,9 @@ import (
 )
 
 func main() {
+
+	// Показ тега
+	data.Tag()
 
 	// Инициализация логера
 	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
