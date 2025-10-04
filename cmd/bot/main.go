@@ -2,15 +2,11 @@ package main
 
 import (
 	"log/slog"
-	"net/http"
 	"os"
-	"time"
+	"timeflow/internal/app"
 	"timeflow/internal/config"
 	"timeflow/internal/data"
 	"timeflow/internal/handlers"
-
-	"github.com/gin-gonic/gin"
-	"gopkg.in/telebot.v4"
 )
 
 func main() {
@@ -18,26 +14,11 @@ func main() {
 	// Показ тега
 	data.Tag()
 
-	// Инициализация логера
-	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
-		ReplaceAttr: func(groups []string, a slog.Attr) slog.Attr {
-			if a.Key == slog.TimeKey {
-				t := a.Value.Any().(time.Time)
+	// Вызов логера
+	app.SetupLooger()
 
-				return slog.String("time", t.Format("15:04:05"))
-			}
-
-			return a
-		},
-	})))
-
-	router := gin.Default()
-
-	router.GET("/health", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"status": "ok",
-		})
-	})
+	// Запуск API
+	router := app.SetupRouter()
 
 	go func() {
 		slog.Info("Starting API...")
@@ -47,16 +28,8 @@ func main() {
 	// Загрузка конфига
 	cfg := config.Load()
 
-	// Настройка бота
-	pref := telebot.Settings{
-		Token: cfg.Token,
-		Poller: &telebot.LongPoller{
-			Timeout: 5 * time.Second,
-		},
-	}
-
 	// Создание бота
-	bot, err := telebot.NewBot(pref)
+	bot, err := app.SetupBot(cfg)
 	if err != nil {
 		slog.Error("Error creating bot", "error", err)
 		os.Exit(1)
