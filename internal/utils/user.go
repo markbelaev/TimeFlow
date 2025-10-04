@@ -7,8 +7,8 @@ import (
 )
 
 // Функция получения информации о пользователе
-func GetUserInfo(user *telebot.User) models.TgUser {
-	return models.TgUser{
+func GetUserInfo(user *telebot.User) models.UserInfo {
+	return models.UserInfo{
 		ID:        int(user.ID),
 		FirstName: user.FirstName,
 		LastName:  user.LastName,
