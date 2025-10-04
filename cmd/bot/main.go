@@ -14,7 +14,7 @@ import (
 func main() {
 
 	// ТЭГ в консоли с именем бота
-	data.TAG()
+	data.Tag()
 
 	// Инициализация логгера
 	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
