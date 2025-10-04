@@ -2,7 +2,7 @@ package commands
 
 import (
 	"log/slog"
-	"timeflow/internal/models"
+	"timeflow/internal/utils"
 
 	"gopkg.in/telebot.v4"
 )
@@ -11,7 +11,7 @@ import (
 func HandleStart(c telebot.Context) error {
 
 	// Получение информации об пользователе
-	user := models.GetUserInfo(c.Sender())
+	user := utils.GetUserInfo(c.Sender())
 
 	// Логирование комманды
 	slog.Info("Обработка /start", "fist_name", user.FirstName, "last_name", user.LastName)
@@ -26,7 +26,7 @@ func HandleStart(c telebot.Context) error {
 
 // Обработчик команды /about
 func HandleAbout(c telebot.Context) error {
-	user := models.GetUserInfo(c.Sender())
+	user := utils.GetUserInfo(c.Sender())
 
 	slog.Info("Обработка /about", "fist_name", user.FirstName, "last_name", user.LastName)
 
